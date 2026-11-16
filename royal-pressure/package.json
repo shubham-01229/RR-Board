@@ -1,0 +1,15 @@
+{
+  "name": "royals-board",
+  "version": "1.0.0",
+  "description": "Royals Board – Rajasthan Royals IPL 2027 Auction Intelligence Dashboard",
+  "main": "index.html",
+  "scripts": {
+    "process-data": "python scripts/process_data.py",
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": ["cricket", "IPL", "analytics", "dashboard", "rajasthan-royals"],
+  "author": "Royals Board Team",
+  "license": "MIT"
+}
+

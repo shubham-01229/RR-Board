@@ -1,0 +1,692 @@
+/* ============================================================
+   ROYALS BOARD — Responsive Breakpoints
+   Mobile-first progressive enhancement for all dashboard views
+   ============================================================ */
+
+/* ── ≤ 1200px  —  Compact Desktop / Small Laptop ──────────── */
+@media (max-width: 1200px) {
+  .kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .charts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .player-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  .comparison-modal {
+    max-width: 800px;
+    padding: 28px;
+  }
+
+  .modal-body {
+    gap: 18px;
+  }
+
+  .header-center {
+    max-width: 400px;
+  }
+}
+
+/* ── ≤ 992px  —  Tablet / Sidebar Collapse to Icons ───────── */
+@media (max-width: 992px) {
+  :root {
+    --sidebar-width: 60px;
+  }
+
+  /* Sidebar: icon-only mode */
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar-logo .logo-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+  }
+
+  .sidebar-logo {
+    padding: 20px 10px;
+    justify-content: center;
+  }
+
+  .nav-section-label {
+    font-size: 0;
+    padding: 12px 0 6px;
+    text-align: center;
+  }
+
+  .nav-section-label::before {
+    content: '·';
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .nav-item {
+    justify-content: center;
+    padding: 11px 8px;
+    gap: 0;
+  }
+
+  .nav-item .nav-label {
+    display: none;
+  }
+
+  .nav-item .nav-icon {
+    font-size: 1.25rem;
+  }
+
+  .nav-item.active::before {
+    width: 2px;
+  }
+
+  .sidebar-footer {
+    padding: 12px 8px;
+    text-align: center;
+  }
+
+  /* Expand sidebar on hover (desktop-style) */
+  .sidebar:hover {
+    width: 260px;
+    box-shadow: 8px 0 40px rgba(0, 0, 0, 0.40);
+  }
+
+  .sidebar:hover .sidebar-logo .logo-text {
+    opacity: 1;
+    width: auto;
+  }
+
+  .sidebar:hover .sidebar-logo {
+    padding: 24px 20px;
+    justify-content: flex-start;
+  }
+
+  .sidebar:hover .nav-section-label {
+    font-size: 0.65rem;
+    padding: 16px 12px 8px;
+  }
+
+  .sidebar:hover .nav-section-label::before {
+    content: none;
+  }
+
+  .sidebar:hover .nav-item {
+    justify-content: flex-start;
+    padding: 11px 14px;
+    gap: 14px;
+  }
+
+  .sidebar:hover .nav-item .nav-label {
+    display: inline;
+  }
+
+  .sidebar:hover .nav-item.active::before {
+    width: 3px;
+  }
+
+  /* Main content adjusts */
+  .header {
+    margin-left: 60px;
+  }
+
+  .main-content {
+    margin-left: 60px;
+    padding: 24px 24px 50px;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .charts-grid {
+    gap: 16px;
+  }
+
+  .header-subtitle {
+    display: none;
+  }
+
+  .header-center {
+    max-width: 340px;
+  }
+}
+
+/* ── ≤ 768px  —  Mobile / Sidebar Overlay ─────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 0px;
+  }
+
+  /* Show hamburger */
+  .hamburger-toggle {
+    display: flex;
+  }
+
+  /* Sidebar becomes an overlay */
+  .sidebar {
+    width: 280px;
+    transform: translateX(-100%);
+    box-shadow: 8px 0 60px rgba(0, 0, 0, 0.50);
+    z-index: 1100;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Reset hover expand (not useful on touch) */
+  .sidebar:hover {
+    width: 280px;
+    box-shadow: 8px 0 60px rgba(0, 0, 0, 0.50);
+  }
+
+  .sidebar:hover .sidebar-logo .logo-text,
+  .sidebar .sidebar-logo .logo-text {
+    opacity: 1;
+    width: auto;
+  }
+
+  .sidebar:hover .sidebar-logo,
+  .sidebar .sidebar-logo {
+    padding: 24px 20px;
+    justify-content: flex-start;
+  }
+
+  .sidebar:hover .nav-section-label,
+  .sidebar .nav-section-label {
+    font-size: 0.65rem;
+    padding: 16px 12px 8px;
+  }
+
+  .sidebar:hover .nav-section-label::before,
+  .sidebar .nav-section-label::before {
+    content: none;
+  }
+
+  .sidebar:hover .nav-item,
+  .sidebar .nav-item {
+    justify-content: flex-start;
+    padding: 11px 14px;
+    gap: 14px;
+  }
+
+  .sidebar:hover .nav-item .nav-label,
+  .sidebar .nav-item .nav-label {
+    display: inline;
+  }
+
+  .sidebar:hover .nav-item.active::before,
+  .sidebar .nav-item.active::before {
+    width: 3px;
+  }
+
+  /* Sidebar overlay bg */
+  .sidebar-overlay {
+    display: block;
+  }
+
+  /* Header: full-width */
+  .header {
+    margin-left: 0;
+    padding: 14px 16px 14px 64px; /* space for hamburger */
+  }
+
+  .header-title {
+    font-size: 1.1rem;
+  }
+
+  .header-center {
+    max-width: none;
+    flex: 1;
+  }
+
+  .header-right .filter-select {
+    display: none; /* hide filters on mobile, use a filter modal instead */
+  }
+
+  /* Main content: full-width */
+  .main-content {
+    margin-left: 0;
+    padding: 20px 16px 50px;
+  }
+
+  /* KPI grid: 2 columns */
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .kpi-card {
+    padding: 18px 16px;
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 1.65rem;
+  }
+
+  .kpi-card .kpi-icon {
+    font-size: 1.35rem;
+  }
+
+  /* Charts: single column */
+  .charts-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .chart-container {
+    padding: 18px;
+  }
+
+  /* Player cards grid */
+  .player-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  /* Table */
+  .table-container {
+    border-radius: 14px;
+  }
+
+  .data-table thead th,
+  .data-table tbody td {
+    padding: 10px 12px;
+    font-size: 0.8rem;
+  }
+
+  /* Modal: full-width-ish */
+  .comparison-modal,
+  .glass-modal {
+    width: 95%;
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .modal-body {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Section headers */
+  .section-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .section-header::after {
+    width: 40px;
+  }
+
+  /* Typography */
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1.05rem; }
+}
+
+/* ── ≤ 576px  —  Small Phone ──────────────────────────────── */
+@media (max-width: 576px) {
+  body {
+    font-size: 14px;
+  }
+
+  /* Header compact */
+  .header {
+    padding: 10px 12px 10px 58px;
+    min-height: 58px;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .header-title {
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
+  }
+
+  .header-center {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .header-search input {
+    padding: 8px 14px 8px 36px;
+    font-size: 0.82rem;
+  }
+
+  .hamburger-toggle {
+    width: 38px;
+    height: 38px;
+    top: 12px;
+    left: 10px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+  }
+
+  /* KPI: single column */
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .kpi-card {
+    padding: 16px 14px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .kpi-card .kpi-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .kpi-card .kpi-value {
+    font-size: 1.5rem;
+  }
+
+  .kpi-card .kpi-label {
+    font-size: 0.68rem;
+  }
+
+  /* Player cards */
+  .player-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .player-card {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
+  .player-card .player-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* Charts */
+  .chart-container {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .chart-container canvas,
+  .chart-container .chart-body {
+    min-height: 180px;
+  }
+
+  /* Tables */
+  .data-table thead th,
+  .data-table tbody td {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
+  .data-table thead th {
+    font-size: 0.65rem;
+  }
+
+  .table-scroll {
+    max-height: 400px;
+  }
+
+  /* Badges */
+  .badge {
+    padding: 3px 10px;
+    font-size: 0.65rem;
+  }
+
+  .category-badge {
+    padding: 4px 12px;
+    font-size: 0.65rem;
+  }
+
+  /* Section headers */
+  .section-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .section-divider {
+    margin: 28px 0;
+  }
+
+  /* Modal */
+  .comparison-modal,
+  .glass-modal {
+    width: 98%;
+    padding: 20px 16px;
+    border-radius: 16px;
+    max-height: 90vh;
+  }
+
+  .modal-header h2 {
+    font-size: 1.1rem;
+  }
+
+  /* Glass components compact */
+  .glass-card {
+    border-radius: 14px;
+  }
+
+  .glass-card:hover {
+    transform: scale(1.01);
+  }
+
+  .glass-button {
+    padding: 9px 18px;
+    font-size: 0.82rem;
+    border-radius: 12px;
+  }
+
+  .glass-input {
+    padding: 9px 14px;
+    font-size: 0.84rem;
+    border-radius: 12px;
+  }
+
+  /* Sidebar overlay - slightly narrower */
+  .sidebar {
+    width: 260px;
+  }
+
+  .sidebar:hover {
+    width: 260px;
+  }
+
+  /* Typography */
+  h1 { font-size: 1.3rem; }
+  h2 { font-size: 1.1rem; }
+  h3 { font-size: 0.95rem; }
+}
+
+/* ── Print ─────────────────────────────────────────────────── */
+@media print {
+  body::before,
+  body::after {
+    display: none;
+  }
+
+  .sidebar,
+  .hamburger-toggle,
+  .sidebar-overlay {
+    display: none !important;
+  }
+
+  .header {
+    margin-left: 0;
+    position: static;
+    backdrop-filter: none;
+    background: #07152E;
+    border-bottom: 2px solid #254AA5;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .glass-card,
+  .glass-surface,
+  .glass-surface-light,
+  .glass-surface-dark,
+  .glass-surface-pink,
+  .glass-surface-blue,
+  .kpi-card,
+  .player-card,
+  .chart-container,
+  .table-container {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(11, 31, 70, 0.95);
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .charts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .modal-overlay,
+  .glass-modal-overlay {
+    display: none !important;
+  }
+}
+
+/* ── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .glass-card:hover,
+  .glass-button:hover,
+  .kpi-card:hover,
+  .player-card:hover {
+    transform: none;
+  }
+}
+
+
+/* ── Additional Responsive Rules ──────────────────────────── */
+@media (max-width: 1200px) {
+  .charts-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .methodology-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .auction-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .dashboard-header {
+    padding: 14px 20px;
+    margin-left: 0;
+  }
+  .header-filters {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .logo-title {
+    display: none;
+  }
+  .logo-subtitle {
+    display: none;
+  }
+  .sidebar-header {
+    justify-content: center;
+  }
+  .sidebar:hover .logo-title,
+  .sidebar:hover .logo-subtitle {
+    display: block;
+  }
+  .sidebar:hover .sidebar-header {
+    justify-content: space-between;
+  }
+  .sidebar-badge span:not(.badge-dot) {
+    display: none;
+  }
+  .sidebar:hover .sidebar-badge span {
+    display: inline;
+  }
+  .comparison-result {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+  .sidebar-close {
+    display: block;
+  }
+  .main-content {
+    margin-left: 0;
+    padding: 16px;
+  }
+  .dashboard-header {
+    padding: 14px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .header-controls {
+    width: 100%;
+    align-items: flex-start;
+  }
+  .charts-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .methodology-grid {
+    grid-template-columns: 1fr;
+  }
+  .comparison-selectors {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .comparison-selectors select {
+    max-width: 100%;
+  }
+  .comparison-result {
+    grid-template-columns: 1fr;
+  }
+  .auction-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .rankings-toggle-container {
+    flex-direction: column;
+  }
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .dashboard-section {
+    margin-bottom: 32px;
+  }
+  .auction-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "batting": {
+    "description": "Batting Pressure Score measures a player's ability to perform in high-stakes situations on a 0-100 scale.",
+    "components": [
+      {
+        "name": "Death Over Strike Rate",
+        "max_weight": 25,
+        "description": "Strike rate in overs 17-20. Higher SR = better finisher."
+      },
+      {
+        "name": "Chase Performance",
+        "max_weight": 20,
+        "description": "Strike rate and impact when batting second in run chases."
+      },
+      {
+        "name": "Close Match Impact",
+        "max_weight": 20,
+        "description": "Runs per innings and SR in matches decided by \u226415 runs or \u22642 wickets."
+      },
+      {
+        "name": "Pressure Consistency",
+        "max_weight": 15,
+        "description": "Batting average in all pressure situations (death overs + close matches + late chases)."
+      },
+      {
+        "name": "Win Contribution",
+        "max_weight": 10,
+        "description": "Percentage of matches won when the player batted."
+      },
+      {
+        "name": "Sample Size",
+        "max_weight": 10,
+        "description": "Bonus for larger sample of matches (up to 50 matches for full credit)."
+      }
+    ],
+    "pressure_situations": "Death overs (17-20), close matches (\u226415 runs or \u22642 wickets margin), 2nd innings overs 16-20."
+  },
+  "bowling": {
+    "description": "Bowling Pressure Score measures a bowler's effectiveness in high-pressure situations on a 0-100 scale.",
+    "components": [
+      {
+        "name": "Death Over Economy",
+        "max_weight": 25,
+        "description": "Economy rate in overs 17-20. Lower economy = more restrictive."
+      },
+      {
+        "name": "Death Over Wickets",
+        "max_weight": 20,
+        "description": "Wicket-taking rate at death. Higher = more impactful."
+      },
+      {
+        "name": "Close Match Economy",
+        "max_weight": 15,
+        "description": "Economy rate in close matches. Lower = more clutch."
+      },
+      {
+        "name": "Pressure Dot Ball %",
+        "max_weight": 15,
+        "description": "Percentage of dot balls in pressure situations."
+      },
+      {
+        "name": "Win Contribution",
+        "max_weight": 10,
+        "description": "Percentage of matches won when the player bowled."
+      },
+      {
+        "name": "Sample Size",
+        "max_weight": 10,
+        "description": "Bonus for larger sample of matches."
+      },
+      {
+        "name": "Overall Economy Bonus",
+        "max_weight": 5,
+        "description": "Bonus for overall economy below 8."
+      }
+    ],
+    "pressure_situations": "Death overs (17-20), close matches, defending in 2nd innings death overs."
+  }
+}

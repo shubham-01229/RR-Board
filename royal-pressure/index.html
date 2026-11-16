@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royals Board – IPL 2027 Auction Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="src/css/glassmorphism.css">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/responsive.css">
+</head>
+<body>
+    <!-- Background Gradient Blobs -->
+    <div class="bg-gradient-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar glass-card">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 60 60" width="48" height="48">
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#254AA5"/>
+                                <stop offset="50%" style="stop-color:#E60693"/>
+                                <stop offset="100%" style="stop-color:#CBA92B"/>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="30" cy="30" r="28" fill="none" stroke="url(#logoGrad)" stroke-width="3"/>
+                        <text x="30" y="36" text-anchor="middle" fill="url(#logoGrad)" font-size="22" font-weight="800" font-family="Orbitron">RB</text>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">ROYALS BOARD</span>
+                    <span class="logo-subtitle">IPL 2027</span>
+                </div>
+            </div>
+            <button id="sidebar-close" class="sidebar-close">✕</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#overview" class="nav-item active" data-section="overview">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Overview</span>
+            </a>
+            <a href="#batting-intelligence" class="nav-item" data-section="batting-intelligence">
+                <span class="nav-icon">🏏</span>
+                <span class="nav-label">Batting Intelligence</span>
+            </a>
+            <a href="#bowling-intelligence" class="nav-item" data-section="bowling-intelligence">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Bowling Intelligence</span>
+            </a>
+            <a href="#pressure-performance" class="nav-item" data-section="pressure-performance">
+                <span class="nav-icon">🔥</span>
+                <span class="nav-label">Pressure Performance</span>
+            </a>
+            <a href="#player-rankings" class="nav-item" data-section="player-rankings">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-label">Player Rankings</span>
+            </a>
+            <a href="#auction-picks" class="nav-item" data-section="auction-picks">
+                <span class="nav-icon">💎</span>
+                <span class="nav-label">Auction Picks</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="sidebar-badge">
+                <span class="badge-dot"></span>
+                <span>Live Analytics</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <button id="hamburger" class="hamburger glass-button">
+        <span></span><span></span><span></span>
+    </button>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+        <!-- Header -->
+        <header class="dashboard-header glass-card">
+            <div class="header-left">
+                <h1 class="header-title">ROYALS <span class="text-pink">BOARD</span></h1>
+                <p class="header-subtitle">RAJASTHAN ROYALS <span class="text-gold">|</span> IPL 2027 AUCTION INTELLIGENCE</p>
+            </div>
+            <div class="header-controls">
+                <div class="header-meta">
+                    <span class="meta-item" id="analysis-period">📅 2022 – 2026</span>
+                    <span class="meta-item refresh-indicator" id="last-refresh">
+                        <span class="refresh-dot"></span> Data loaded
+                    </span>
+                </div>
+                <div class="header-filters">
+                    <select id="competition-filter" class="glass-input filter-select" title="Competition">
+                        <option value="">All Competitions</option>
+                    </select>
+                    <select id="season-filter" class="glass-input filter-select" title="Season">
+                        <option value="">All Seasons</option>
+                    </select>
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="player-search" class="glass-input search-input" placeholder="Search players...">
+                    </div>
+                    <button id="reset-filters" class="glass-button reset-btn" title="Reset Filters">↺ Reset</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Loading Screen -->
+        <div id="loading-screen" class="loading-screen">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading Cricket Intelligence...</p>
+        </div>
+
+        <!-- Dashboard Content -->
+        <div id="dashboard-content" style="display:none;">
+
+            <!-- ========== OVERVIEW SECTION ========== -->
+            <section id="overview" class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Overview <span class="section-accent"></span></h2>
+                    <p class="section-desc">Comprehensive analysis across T20 cricket</p>
+                </div>
+                <div class="kpi-grid" id="kpi-grid">
+                    <!-- KPI cards rendered by JS -->
+                </div>
+            </section>
+
+            <!-- ========== BATTING INTELLIGENCE ========== -->
+            <section id="batting-intelligence" class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Batting <span class="text-pink">Intelligence</span></h2>
+                    <p class="section-desc">Top performers under pressure with the bat</p>
+                </div>
+
+                <div class="top-players-grid">
+                    <div class="glass-card card-full">
+                        <h3 class="card-title">🏏 Top 10 Batters by Pressure Score</h3>
+                        <div class="table-wrapper" id="top-batters-table"></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid charts-grid-2">
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Top Batters Comparison</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-top-batters"></canvas>
+                        </div>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Strike Rate vs Batting Average</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-sr-vs-avg"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-grid charts-grid-2">
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Runs by Innings Phase</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-batting-phase"></canvas>
+                        </div>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Pressure Performance Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-batting-pressure-dist"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== BOWLING INTELLIGENCE ========== -->
+            <section id="bowling-intelligence" class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Bowling <span class="text-pink">Intelligence</span></h2>
+                    <p class="section-desc">Top bowlers who deliver under pressure</p>
+                </div>
+
+                <div class="top-players-grid">
+                    <div class="glass-card card-full">
+                        <h3 class="card-title">🎯 Top 10 Bowlers by Pressure Score</h3>
+                        <div class="table-wrapper" id="top-bowlers-table"></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid charts-grid-2">
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Top Bowlers Ranking</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-top-bowlers"></canvas>
+                        </div>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Economy vs Wickets</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-econ-vs-wickets"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts-grid charts-grid-2">
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Wickets by Innings Phase</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-bowling-phase"></canvas>
+                        </div>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Bowling Pressure Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-bowling-pressure-dist"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== PRESSURE PERFORMANCE ========== -->
+            <section id="pressure-performance" class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Pressure <span class="text-gold">Performance</span></h2>
+                    <p class="section-desc">The most critical analysis — who thrives when the heat is on?</p>
+                </div>
+
+                <!-- Methodology -->
+                <div class="methodology-grid">
+                    <div class="glass-card methodology-card glow-pink">
+                        <h3 class="card-title">🏏 Batting Pressure Score Methodology</h3>
+                        <p class="methodology-desc" id="bat-methodology-desc"></p>
+                        <div id="bat-methodology-components" class="methodology-components"></div>
+                        <p class="methodology-note" id="bat-pressure-situations"></p>
+                    </div>
+                    <div class="glass-card methodology-card glow-blue">
+                        <h3 class="card-title">🎯 Bowling Pressure Score Methodology</h3>
+                        <p class="methodology-desc" id="bowl-methodology-desc"></p>
+                        <div id="bowl-methodology-components" class="methodology-components"></div>
+                        <p class="methodology-note" id="bowl-pressure-situations"></p>
+                    </div>
+                </div>
+
+                <!-- Pressure Leaderboards -->
+                <div class="charts-grid charts-grid-2">
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">🔥 Top Pressure Batters</h3>
+                        <div class="chart-container chart-container-tall">
+                            <canvas id="chart-pressure-batters"></canvas>
+                        </div>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">🔥 Top Pressure Bowlers</h3>
+                        <div class="chart-container chart-container-tall">
+                            <canvas id="chart-pressure-bowlers"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Death Over & Close Match Analysis -->
+                <div class="charts-grid charts-grid-2">
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Death-Over Batting Specialists</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-death-batting"></canvas>
+                        </div>
+                    </div>
+                    <div class="glass-card chart-card">
+                        <h3 class="card-title">Death-Over Bowling Specialists</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-death-bowling"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Player Comparison -->
+                <div class="glass-card comparison-section">
+                    <h3 class="card-title">⚔️ Player Comparison</h3>
+                    <div class="comparison-controls">
+                        <div class="comparison-toggle">
+                            <button class="glass-button compare-toggle active" data-type="batting" id="compare-batting-btn">Batting</button>
+                            <button class="glass-button compare-toggle" data-type="bowling" id="compare-bowling-btn">Bowling</button>
+                        </div>
+                        <div class="comparison-selectors">
+                            <select id="compare-player1" class="glass-input">
+                                <option value="">Select Player 1</option>
+                            </select>
+                            <span class="vs-text">VS</span>
+                            <select id="compare-player2" class="glass-input">
+                                <option value="">Select Player 2</option>
+                            </select>
+                            <button id="compare-btn" class="glass-button btn-pink">Compare</button>
+                        </div>
+                    </div>
+                    <div class="comparison-result" id="comparison-result" style="display:none;">
+                        <div class="comparison-chart-container">
+                            <canvas id="chart-comparison-radar"></canvas>
+                        </div>
+                        <div class="comparison-stats" id="comparison-stats"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== PLAYER RANKINGS ========== -->
+            <section id="player-rankings" class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Player <span class="text-pink">Rankings</span></h2>
+                    <p class="section-desc">Complete leaderboards — sort by any metric</p>
+                </div>
+
+                <div class="rankings-toggle-container">
+                    <button class="glass-button rankings-toggle active" data-target="batter-rankings" id="btn-batter-rankings">🏏 Batter Rankings</button>
+                    <button class="glass-button rankings-toggle" data-target="bowler-rankings" id="btn-bowler-rankings">🎯 Bowler Rankings</button>
+                </div>
+
+                <div class="glass-card rankings-card">
+                    <div class="rankings-search">
+                        <input type="text" id="rankings-search" class="glass-input" placeholder="Search within rankings...">
+                    </div>
+                    <div id="batter-rankings" class="rankings-table-container">
+                        <!-- Rendered by rankings.js -->
+                    </div>
+                    <div id="bowler-rankings" class="rankings-table-container" style="display:none;">
+                        <!-- Rendered by rankings.js -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== AUCTION PICKS ========== -->
+            <section id="auction-picks" class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Auction <span class="text-gold">Picks</span></h2>
+                    <p class="section-desc">Strategic recommendations for IPL 2027 — backed by data</p>
+                </div>
+
+                <!-- Category Sections -->
+                <div class="auction-category">
+                    <h3 class="auction-category-title must-target">💎 MUST TARGET</h3>
+                    <div class="auction-cards-grid" id="must-target-cards"></div>
+                </div>
+
+                <div class="auction-category">
+                    <h3 class="auction-category-title high-priority">🔥 HIGH PRIORITY</h3>
+                    <div class="auction-cards-grid" id="high-priority-cards"></div>
+                </div>
+
+                <div class="auction-category">
+                    <h3 class="auction-category-title value-pick">⚡ VALUE PICK</h3>
+                    <div class="auction-cards-grid" id="value-pick-cards"></div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="dashboard-footer glass-card">
+                <p>ROYALS BOARD — IPL 2027 Auction Intelligence Platform</p>
+                <p class="footer-note">Data sourced from T20 & T20I matches (2022–2026) • All statistics calculated from actual match data</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="src/js/data-loader.js"></script>
+    <script src="src/js/analytics.js"></script>
+    <script src="src/js/charts.js"></script>
+    <script src="src/js/filters.js"></script>
+    <script src="src/js/rankings.js"></script>
+    <script src="src/js/app.js"></script>
+</body>
+</html>
+
